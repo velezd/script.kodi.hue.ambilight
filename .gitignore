@@ -4,3 +4,4 @@
 *.pyo
 cscope.out
 tags
+.idea

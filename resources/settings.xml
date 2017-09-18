@@ -8,9 +8,7 @@
 
         <!-- Grouping -->
         <setting type="lsep" label="1100" />
-        <setting id="setup_theater_lights" type="action" enable="!eq(-3,false)" label="1120" action="RunScript(script.kodi.hue.ambilight,action=setup_theater_lights)" />
         <setting id="setup_ambilight_lights" type="action" enable="!eq(-4,false)" label="1130" action="RunScript(script.kodi.hue.ambilight,action=setup_ambilight_lights)" />
-        <setting id="setup_static_lights" type="action" enable="!eq(-5,false)" label="1140" action="RunScript(script.kodi.hue.ambilight,action=setup_static_lights)" />
         <!-- Bridge -->
         <setting type="lsep" label="1200" />
         <setting id="bridge_ip" type="text" label="1220" enable="false" default="" />
@@ -23,34 +21,6 @@
         <!-- Reset -->
         <setting type="lsep" label="1400" />
         <setting id="reset_settings" type="action" label="1410" action="RunScript(script.kodi.hue.ambilight,action=reset_settings)" option="close" />
-    </category>
-
-    <category label="2000">
-        <!-- Theater -->
-        <setting type="lsep" label="2000" />
-
-        <!-- Global -->
-        <setting type="lsep" label="2100" />
-        <setting id="setup_theater_subgroup" type="action" label="2105" action="RunScript(script.kodi.hue.ambilight,action=setup_theater_subgroup)" />
-        <setting id="dim_time" label="2110" type="slider" default="4" range="0,0.5,10" option="float" />
-        <setting id="proportional_dim_time" label="2120" type="bool" default="true" />
-        <setting id="propritional_explainer" type="lsep" label="2130" visible="eq(-1,true)" subsetting="true" />
-
-        <!-- Playback Start -->
-        <setting type="lsep" label="2200" />
-        <setting id="theater_start_bri_override" label="2210" type="bool" default="false" />
-        <setting id="theater_start_bri" label="2220" visible="eq(-1,true)" type="slider" default="30" range="0,5,254" option="int" />
-
-        <!-- Playback Pause -->
-        <setting type="lsep" label="2300" />
-        <setting id="theater_pause_dim_subgroup" label="2305" type="bool" default="false" />
-        <setting id="theater_pause_bri_override" label="2310" type="bool" default="false" />
-        <setting id="theater_pause_bri" label="2320" visible="eq(-1,true)" type="slider" default="150" range="0,5,254" option="int" />
-
-        <!-- Playback Stop -->
-        <setting type="lsep" label="2400" />
-        <setting id="theater_stop_bri_override" label="2410" type="bool" default="false" />
-        <setting id="theater_stop_bri" label="2420" visible="eq(-1,true)" type="slider" default="150" range="0,5,254" option="int" />
     </category>
 
     <category label="3000">
@@ -88,21 +58,6 @@
         <setting type="lsep" label="3600" />
         <setting id="ambilight_stop_bri_override" label="3610" visible="eq(-14,true)" type="bool" default="false" />
         <setting id="ambilight_stop_bri" label="3620" visible="eq(-1,true)" type="slider" default="150" range="0,5,254" option="int" />
-    </category>
-
-    <category label="4000">
-        <!-- Theater -->
-        <setting type="lsep" label="4000" />
-
-        <!-- Playback Start -->
-        <setting type="lsep" label="4100" />
-        <setting id="static_start_random" label="4105" type="bool" visible="eq(1,false) + eq(3,false)" default="false" />
-        <setting id="static_start_hue_override" label="4110" visible="eq(-1,false)" type="bool" default="false" />
-        <setting id="static_start_hue" label="4120" visible="eq(-1,true)" type="slider" default="30" range="0,100,65535" option="int" />
-        <setting id="static_start_sat_override" label="4130" visible="eq(-3,false)" type="bool" default="false" />
-        <setting id="static_start_sat" label="4140" visible="eq(-1,true)" type="slider" default="30" range="0,5,254" option="int" />
-        <setting id="static_start_bri_override" label="4150" type="bool" default="false" />
-        <setting id="static_start_bri" label="4160" visible="eq(-1,true)" type="slider" default="100" range="0,5,254" option="int" />
     </category>
 
     <category label="5000">

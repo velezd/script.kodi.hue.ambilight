@@ -10,53 +10,11 @@ except ImportError:
     tools.notify("Kodi Hue", "ERROR: Could not import Python requests")
 
 
-def user_exists(bridge_ip, bridge_user, notify=True):
-    req = requests.get('http://{}/api/{}/config'.format(
-        bridge_ip, bridge_user))
-    res = req.json()
-
-    success = False
-    try:
-        success = bridge_user in res['whitelist']
-    except KeyError:
-        success = False
-
-    if notify:
-        import tools
-        if success:
-            tools.notify("Kodi Hue", "Connected")
-        else:
-            tools.notify("Kodi Hue", "Could not connect to bridge")
-
-    return success
-
-
+# called from ui.py - def discover_hue_bridge(hue)
 def discover():
     bridge_ip = _discover_upnp()
-    if bridge_ip is None:
-        bridge_ip = _discover_nupnp()
 
     return bridge_ip
-
-
-def create_user(bridge_ip, notify=True):
-    device = 'kodi#ambilight'
-    data = '{{"devicetype": "{}"}}'.format(device)
-
-    res = 'link button not pressed'
-    while 'link button not pressed' in res:
-        if notify:
-            import tools
-            tools.notify('Kodi Hue', 'Press link button on bridge')
-        req = requests.post('http://{}/api'.format(bridge_ip), data=data)
-        res = req.text
-        time.sleep(3)
-
-    res = req.json()
-    username = res[0]['success']['username']
-
-    return username
-
 
 def get_lights(bridge_ip, username):
     return get_lights_by_ids(bridge_ip, username)
@@ -116,16 +74,5 @@ def _discover_upnp():
             # if the socket times out once, its probably not going to
             # complete at all. fallback to nupnp.
             break
-
-    return bridge_ip
-
-
-def _discover_nupnp():
-    # verify false hack until meethue fixes their ssl cert.
-    req = requests.get('https://www.meethue.com/api/nupnp', verify=False)
-    res = req.json()
-    bridge_ip = None
-    if res:
-        bridge_ip = res[0]["internalipaddress"]
 
     return bridge_ip
